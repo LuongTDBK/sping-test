@@ -1,0 +1,52 @@
+app:
+  logging:
+  config: config/log4j2.xml
+server:
+  port: 1993
+spring:
+  task:
+    scheduling:
+      pool:
+        size: 5
+  main:
+    banner-mode: console
+  datasource:
+    url: jdbc:mysql://localhost:3306/luong_td
+    username: root
+    password: 123456a@
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+application:
+  config:
+    token-expired-time-in-hour:
+
+
+#  datasource-jdbc:
+#    jdbc-url: jdbc:oracle:thin:@(DESCRIPTION = (ADDRESS_LIST =  (ADDRESS = (PROTOCOL = TCP)(HOST = 10.252.10.246)(PORT = 1522)))(CONNECT_DATA = (SERVICE_NAME = ocs) (SERVER = DEDICATED)))
+#    username: ocs
+#    password: ocssupport123
+#    driver-class-name: oracle.jdbc.driver.OracleDriver
+#    connection-timeout: 20000
+#    minimum-idle: 1
+#    maximum-pool-size: 256
+#    idle-timeout: 10000
+#    max-lifetime: 2000
+#    pool-name: Job-Extend
+#    data-source-properties: v$session.program=Job-Extend
+#  datasource-log:
+#    jdbc-url: jdbc:oracle:thin:@(DESCRIPTION = (ADDRESS_LIST =  (ADDRESS = (PROTOCOL = TCP)(HOST = 10.252.10.246)(PORT = 1523)))(CONNECT_DATA = (SERVICE_NAME = gitlog) (SERVER = DEDICATED)))
+#    username: ocs_log
+#    password: ocs
+#    driver-class-name: oracle.jdbc.driver.OracleDriver
+#    connection-timeout: 20000
+#    minimum-idle: 1
+#    maximum-pool-size: 256
+#    idle-timeout: 10000
+#    max-lifetime: 2000
+#    pool-name: Job-Extend
+#    data-source-properties: v$session.program=Job-Extend
+

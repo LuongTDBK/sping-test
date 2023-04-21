@@ -1,0 +1,48 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.1.xsd
+	http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+
+    <!-- define component scan -->
+    <!--	<context:component-scan base-package="vn.neo" />-->
+
+    <!-- khai báo thread pool -->
+    <bean id="thread-pool" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor" scope="singleton">
+        <property name="corePoolSize" value="1"/>
+        <property name="maxPoolSize" value="128"/>
+        <property name="keepAliveSeconds" value="10"/>
+        <property name="threadNamePrefix" value="data30-"/>
+        <property name="WaitForTasksToCompleteOnShutdown" value="true"/>
+    </bean>
+
+<!--    <bean id="update-db" class="vn.neo.file.UpdateDb" scope="singleton" init-method="start">-->
+
+<!--        <property name="sqlInsertCustomerAct" value="INSERT INTO customer_act-->
+<!--                            (ID,SERVICE_ID, PKG_ID,PKG_CODE-->
+<!--							,PRICE,LOG_DATE,STATE-->
+<!--							,CHANNEL,SESSION_ID,MSISDN,ACT_TYPE-->
+<!--							,MSG_STATE,MESSAGE)-->
+
+<!--					VALUES(	CUSTOMER_ACT_SEQ.nextval,:1,:2,:3-->
+<!--							,:4,to_date(:5, 'yyyyMMddHH24miss'),:6-->
+<!--							,:7,:8,:9,0-->
+<!--							,:10,:11)"/>-->
+<!--        <property name="sqlUpdateCustomerReg" value="UPDATE customer_reg SET state=:1,-->
+<!--                            price = :2,-->
+<!--							last_update=to_date(:3,'yyyyMMddHH24miss')-->
+<!--					WHERE ID =:4"/>-->
+
+<!--        <property name="path" value="logs/work/wait"/>-->
+<!--        <property name="pathRetry" value="logs/work/retry"/>-->
+<!--        <property name="maxRetry" value="3"/>-->
+<!--        <property name="pathFailed" value="logs/work/failed"/>-->
+<!--        <property name="pattern" value="data30*"/>-->
+<!--        <property name="batchSize" value="3000"/>-->
+<!--        <property name="sleep" value="10000"/>-->
+<!--    </bean>-->
+</beans>

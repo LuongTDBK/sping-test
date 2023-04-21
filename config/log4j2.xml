@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+    <Properties>
+        <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} | %-20.20thread | %-5.5p | %m%n</Property>
+        <Property name="DATA_PATTERN">%m%n</Property>
+        <Property name="WORK">logs/work</Property>
+        <Property name="LOGS">logs</Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+
+        <RollingFile name="logs-of-day" fileName="${LOGS}/data30_in_day.log"
+                     filePattern="${LOGS}/archive/data30_in_day.%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="${DATA_PATTERN}"/>
+            <Policies>
+                <OnStartupTriggeringPolicy/>
+            </Policies>
+        </RollingFile>
+
+        <RollingFile name="updateDB" fileName="${LOGS}/work/data30.log"
+                     filePattern="${LOGS}/work/wait/data30.%i.%d{yyyy-MM-dd-HHmmss}.log">
+            <PatternLayout pattern="${DATA_PATTERN}"/>
+            <Policies>
+                <OnStartupTriggeringPolicy/>
+                <TimeBasedTriggeringPolicy interval="20" modulate="true"/>
+                <CronTriggeringPolicy schedule="0 * * * * ? *" evaluateOnStartup="true"/>
+            </Policies>
+        </RollingFile>
+
+        <RollingFile name="log-module"
+                     fileName="logs/module.log"
+                     filePattern="logs/archive/module.%d{yyyy-MM-dd}.log.gz">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} | %c{-10} | %thread | %p | %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <OnStartupTriggeringPolicy/>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingFile>
+
+
+    </Appenders>
+    <Loggers>
+        <Logger name="updateDB" level="info" additivity="false">
+            <AppenderRef ref="updateDB"/>
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="logs-of-day" level="info" additivity="false">
+            <AppenderRef ref="logs-of-day"/>
+            <!--            <AppenderRef ref="Console"/>-->
+        </Logger>
+        <Logger name="vn.neo" level="info" additivity="false">
+            <AppenderRef ref="log-module"/>
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="vn.neo.service" level="debug" additivity="false">
+            <AppenderRef ref="log-module"/>
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Root level="error">
+            <AppenderRef ref="log-module"/>
+            <!--            <AppenderRef ref="Console"/>-->
+        </Root>
+    </Loggers>
+</Configuration>
