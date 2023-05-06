@@ -9,5 +9,6 @@ public class Test {
         for (String item: result) {
             System.out.println(item);
         }
+        System.out.println("OK");
     }
 }

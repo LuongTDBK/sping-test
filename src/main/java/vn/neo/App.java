@@ -16,7 +16,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  */
 @SpringBootApplication
 @EnableScheduling
-@EnableAutoConfiguration()
 //@ImportResource({ "file:config/beans.xml", "file:config/schedule-conf.xml" })
 public class App {
 	private static final Logger logger = LoggerFactory.getLogger(App.class);
