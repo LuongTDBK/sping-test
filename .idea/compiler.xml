@@ -7,6 +7,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="sping-test" />
         <module name="spring-test" />
         <module name="spring_test" />
         <module name="test" />
@@ -15,6 +16,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="sping-test" options="-parameters" />
       <module name="spring-test" options="-parameters" />
       <module name="spring_test" options="-parameters" />
       <module name="test" options="-parameters" />
